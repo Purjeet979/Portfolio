@@ -1,0 +1,197 @@
+import edunet from "../assets/company/edunet.webp";
+import eduskill from "../assets/company/eduskill.webp";
+import mathwork from "../assets/company/mathwork.webp";
+
+export const experiences = [
+  {
+    title: "HTML Training",
+    company_name: "Spoken Tutorial, IIT Bombay",
+    icon: eduskill,
+    iconBg: "#161329",
+    date: "October 7, 2025",
+    type: "certificate",
+    points: [
+      "Successfully completed the HTML test with a score of 80%, organized at A. P Shah Institute of Technology.",
+      "Training material provided by EduPyramids, SINE, IIT Bombay.",
+    ],
+  },
+  {
+    title: "1st Place - HackStreak 1.0",
+    company_name: "ITSA, A.P. Shah Institute of Technology",
+    icon: mathwork,
+    iconBg: "#161329",
+    date: "September 17, 2025",
+    type: "achievement",
+    points: [
+      "Secured FIRST PLACE in the HackStreak 1.0 competition.",
+      "The event was hosted by the Information Technology Student Association (ITSA) on the occasion of Engineer's Day.",
+    ],
+  },
+  {
+    title: "Winner - Beyond the Code",
+    company_name: "Coder's Club, A.P. Shah Institute of Technology",
+    icon: edunet,
+    iconBg: "#161329",
+    date: "April 6, 2026",
+    type: "achievement",
+    points: [
+      "Achieved Winner position as part of Team Kaam Chalau Coders in Beyond the Code.",
+      "A competitive coding event showcasing excellence in problem-solving and teamwork.",
+    ],
+  },
+  {
+    title: "Runner-up - Codeathon 2026: SoloSprint",
+    company_name: "ITSA, A.P. Shah Institute of Technology",
+    icon: mathwork,
+    iconBg: "#161329",
+    date: "March 11, 2026",
+    type: "achievement",
+    points: [
+      "Secured Runner-up position in Codeathon 2026: SoloSprint.",
+      "Hosted by ITSA under the Department of Information Technology as part of I.T. Week.",
+    ],
+  },
+  {
+    title: "Semi-Finalist - ET-AI Hackathon 2026",
+    company_name: "The Economic Times Digital",
+    icon: eduskill,
+    iconBg: "#161329",
+    date: "May 7, 2026",
+    type: "achievement",
+    points: [
+      "Successfully emerged as a Semi-Finalist in the ET-AI Hackathon 2026.",
+      "Commended for innovation, collaborative spirit, and commitment to building meaningful AI solutions.",
+    ],
+  },
+  {
+    title: "Top 10 - Hack4Innovation",
+    company_name: "VESIT & Rotary Club of Mumbai",
+    icon: mathwork,
+    iconBg: "#161329",
+    date: "March 28-29, 2026",
+    type: "achievement",
+    points: [
+      "Secured Top 10 position as part of Team Tandoori Techies in Hack4Innovation hackathon.",
+      "Organized by Vivekanand Education Society's Institute of Technology in association with Rotary Club of Mumbai, Ghatkopar West.",
+    ],
+  },
+  {
+    title: "Outstanding Grade - Android Developer Internship",
+    company_name: "AICTE - EduSkills (Google for Developers)",
+    icon: eduskill,
+    iconBg: "#161329",
+    date: "January - March 2026",
+    type: "achievement",
+    points: [
+      "Completed 10-week Android Developer Virtual Internship with Grade 'O' (Outstanding: 90-100).",
+      "Supported by Google for Developers India Edu Program.",
+    ],
+  },
+  {
+    title: "Outstanding Grade - Data Science Master Internship",
+    company_name: "AICTE - EduSkills (Siemens)",
+    icon: eduskill,
+    iconBg: "#161329",
+    date: "April - June 2026",
+    type: "achievement",
+    points: [
+      "Completed 10-week Data Science Master Virtual Internship with Grade 'O' (Outstanding: 90-100).",
+      "Supported by Siemens.",
+    ],
+  },
+  {
+    title: "Outstanding Grade - Ethical Hacking Internship",
+    company_name: "AICTE - EduSkills Academy",
+    icon: eduskill,
+    iconBg: "#161329",
+    date: "October - December 2025",
+    type: "achievement",
+    points: [
+      "Completed 10-week Ethical Hacking Virtual Internship (English) with Grade 'O' (Outstanding: 90-100).",
+      "Supported by EduSkills Academy.",
+    ],
+  },
+  {
+    title: "Java Full Stack Developer Virtual Internship",
+    company_name: "AICTE - EduSkills",
+    icon: eduskill,
+    iconBg: "#161329",
+    date: "July - Sep 2025",
+    type: "certificate",
+    points: [
+      "Successfully completed a 10-week virtual internship as a Java Full Stack Developer.",
+      "Gained practical experience in Java full-stack technologies through the AICTE National Internship Portal.",
+    ],
+  },
+  {
+    title: "Data Base Management System",
+    company_name: "NPTEL (IIT Kharagpur)",
+    icon: edunet,
+    iconBg: "#161329",
+    date: "Jul - Sep 2025",
+    type: "certificate",
+    points: [
+      "Successfully completed the 8-week NPTEL course with a consolidated score of 63%.",
+      "Gained proficiency in database management systems, verified by a proctored exam.",
+    ],
+  },
+  {
+    title: "Problem Solving (Basic) Certified",
+    company_name: "HackerRank",
+    icon: mathwork,
+    iconBg: "#161329",
+    date: "August 11, 2025",
+    type: "certificate",
+    points: [
+      "Passed the HackerRank skill certification test for Problem Solving (Basic).",
+      "Demonstrated proficiency in fundamental problem-solving skills.",
+    ],
+  },
+  {
+    title: "Array Mastery Bootcamp",
+    company_name: "DevTown, Microsoft Student Chapter - MSIT & GDG - VIT-AP",
+    icon: eduskill,
+    iconBg: "#161329",
+    date: "June 24, 2025",
+    type: "certificate",
+    points: [
+      "Completed the 5-day free bootcamp on 'ARRAY MASTERY: CRACK ARRAY PUZZLES LIKE A PRO'.",
+      "Recognized for participation and project completion in the event hosted in collaboration with Microsoft Student Chapter - MSIT and GDG - VIT-AP.",
+    ],
+  },
+  {
+    title: "Networking Technology Foundations",
+    company_name: "Juniper Networks",
+    icon: mathwork,
+    iconBg: "#161329",
+    date: "June 20, 2025",
+    type: "certificate",
+    points: [
+      "Successfully completed the Networking Technology Foundations course from Juniper Education Services.",
+    ],
+  },
+  {
+    title: "Fundamentals of Data Structures in C",
+    company_name: "Simplilearn SkillUP",
+    icon: edunet,
+    iconBg: "#161329",
+    date: "April 4, 2025",
+    type: "certificate",
+    points: [
+      "Successfully completed the online course for Fundamentals of Data Structures in C.",
+      "Demonstrated initiative and commitment to deepening skills in core computer science concepts.",
+    ],
+  },
+  {
+    title: "Python Essentials 1",
+    company_name: "Cisco Networking Academy",
+    icon: eduskill,
+    iconBg: "#161329",
+    date: "January 31, 2025",
+    type: "certificate",
+    points: [
+      "Successfully completed the Python Essentials 1 course offered by A.P. Shah Institute of Technology.",
+      "Gained foundational knowledge in Python programming through the Cisco Networking Academy program.",
+    ],
+  },
+];

@@ -1,10 +1,38 @@
-import React from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { styles } from "../styles";
-import { ComputersCanvas } from "./canvas";
 import Typewriter from "typewriter-effect";
 
+const ComputersCanvas = lazy(() => import("./canvas/Computers"));
+
+const useDesktopCanvas = () => {
+  const [enabled, setEnabled] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(min-width: 768px)").matches &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setEnabled(mediaQuery.matches && !motionQuery.matches);
+
+    mediaQuery.addEventListener("change", update);
+    motionQuery.addEventListener("change", update);
+
+    return () => {
+      mediaQuery.removeEventListener("change", update);
+      motionQuery.removeEventListener("change", update);
+    };
+  }, []);
+
+  return enabled;
+};
+
 const Hero = () => {
+  const showComputerCanvas = useDesktopCanvas();
+
   return (
     <section className="relative w-full h-screen mx-auto">
       <div className={`absolute inset-0 top-[120px] max-w-7xl mx-auto ${styles.paddingX} flex flex-row items-start gap-5`}>
@@ -21,7 +49,7 @@ const Hero = () => {
             I am doing
             <Typewriter
               options={{
-                strings: ["Betech","Information Technology" ],
+                strings: ["B.Tech", "Information Technology"],
                 autoStart: true,
                 loop: true,
                 loopCount: Infinity,
@@ -33,7 +61,13 @@ const Hero = () => {
         </div>
       </div>
 
-      <ComputersCanvas />
+      {showComputerCanvas ? (
+        <Suspense fallback={<div className="hero-canvas-fallback" />}>
+          <ComputersCanvas />
+        </Suspense>
+      ) : (
+        <div className="hero-canvas-fallback" />
+      )}
 
       <div className="absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center">
         <a href="#about">

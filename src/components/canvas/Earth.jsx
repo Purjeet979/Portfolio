@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import { OrbitControls, useGLTF } from "@react-three/drei";
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader";
 import CanvasLoader from "../Loader";
 
@@ -23,8 +23,8 @@ const EarthCanvas = () => {
   return (
     <Canvas
       frameloop="demand"
-      dpr={[1, 2]}
-      gl={{ preserveDrawingBuffer: true }}
+      dpr={[1, 1.5]}
+      gl={{ antialias: true, powerPreference: "high-performance" }}
       camera={{ fov: 45, near: 0.1, far: 200, position: [-4, 3, 6] }}
       shadows
     >
@@ -37,7 +37,6 @@ const EarthCanvas = () => {
       <Suspense fallback={<CanvasLoader />}>
         <EarthModel />
       </Suspense>
-      <Preload all />
     </Canvas>
   );
 };

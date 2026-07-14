@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Preload, useGLTF } from "@react-three/drei";
+import { OrbitControls, useGLTF } from "@react-three/drei";
 import { DRACOLoader } from "three/addons/loaders/DRACOLoader";
 import CanvasLoader from "../Loader";
 
@@ -39,29 +39,25 @@ const ComputerModel = ({ isMobile }) => {
 const MemoizedComputerModel = React.memo(ComputerModel);
 
 const ComputersCanvas = () => {
-  const [isMobile, setIsMobile] = useState(false);
+  // Initialize immediately (not false then update) — prevents CLS / canvas collapse on Netlify
+  const [isMobile, setIsMobile] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(max-width: 500px)").matches
+  );
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 500px)");
-
-    const handleMediaQueryChange = (event) => {
-      setIsMobile(event.matches);
-    };
-
+    const handleMediaQueryChange = (event) => setIsMobile(event.matches);
     mediaQuery.addEventListener("change", handleMediaQueryChange);
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleMediaQueryChange);
-    };
+    return () => mediaQuery.removeEventListener("change", handleMediaQueryChange);
   }, []);
 
   return (
     <Canvas
       frameloop="demand"
       shadows
-      dpr={[1, 2]}
+      dpr={[1, 1.5]}
       camera={{ position: [20, 3, 5], fov: 25 }}
-      gl={{ preserveDrawingBuffer: true }}
+      gl={{ antialias: true, powerPreference: "high-performance" }}
     >
       <Suspense fallback={<CanvasLoader />}>
         <OrbitControls
@@ -71,7 +67,6 @@ const ComputersCanvas = () => {
         />
         <MemoizedComputerModel isMobile={isMobile} />
       </Suspense>
-      <Preload all />
     </Canvas>
   );
 };

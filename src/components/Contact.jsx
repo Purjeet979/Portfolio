@@ -1,11 +1,37 @@
-import React from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import { styles } from "../styles";
-import { EarthCanvas } from "./canvas";
 import { SectionWrapper } from "../hoc";
 import { slideIn } from "../utils/motion";
 import "../index.css";
+
+const EarthCanvas = lazy(() => import("./canvas/Earth"));
+
+const useDesktopCanvas = () => {
+  const [enabled, setEnabled] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      window.matchMedia("(min-width: 768px)").matches &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setEnabled(mediaQuery.matches && !motionQuery.matches);
+
+    mediaQuery.addEventListener("change", update);
+    motionQuery.addEventListener("change", update);
+
+    return () => {
+      mediaQuery.removeEventListener("change", update);
+      motionQuery.removeEventListener("change", update);
+    };
+  }, []);
+
+  return enabled;
+};
 
 // This new component will replace the old <form>
 const ContactInfoCard = ({ title, value, href }) => (
@@ -22,6 +48,8 @@ const ContactInfoCard = ({ title, value, href }) => (
 );
 
 const Contact = () => {
+  const showEarthCanvas = useDesktopCanvas();
+
   // All the old state (useState) and handlers (handleSubmit) are removed.
   return (
     <div className={`xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden`}>
@@ -61,10 +89,16 @@ const Contact = () => {
         variants={slideIn("right", "tween", 0.2, 1)}
         className="xl:flex-1 xl:h-auto md:h-[550px] h-[350px]"
       >
-        <EarthCanvas />
+        {showEarthCanvas ? (
+          <Suspense fallback={<div className="earth-fallback" />}>
+            <EarthCanvas />
+          </Suspense>
+        ) : (
+          <div className="earth-fallback" />
+        )}
       </motion.div>
     </div>
   );
 };
 
-export default SectionWrapper(Contact, "contact");
+export default SectionWrapper(Contact, "");

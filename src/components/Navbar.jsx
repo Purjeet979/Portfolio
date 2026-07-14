@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { close, logo, menu } from '../assets'; // Note: 'logo' and 'menu' are still imported but not used
-import { navLinks } from '../constants';
+import close from '../assets/close.svg';
+import menu from '../assets/menu.svg';
+import { navLinks } from '../constants/nav';
 import { styles } from '../styles';
 
 const Navbar = () => {
@@ -53,10 +53,11 @@ const Navbar = () => {
         className={`${styles.paddingX} w-full flex items-center py-3 fixed top-0 z-20 bg-primary`}
       >
         <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
-          <Link
-            to="/"
+          <a
+            href="#"
             className="flex items-center gap-2 transition-all duration-300 nav-link-item" // <-- CLASS ADDED HERE
-            onClick={() => {
+            onClick={(event) => {
+              event.preventDefault();
               setActive('');
               window.scrollTo(0, 0);
             }}
@@ -66,7 +67,7 @@ const Navbar = () => {
               PURJEET&nbsp;
               <span className="sm:block hidden">SHAHU</span>
             </p>
-          </Link>
+          </a>
           {renderNavLinks(false)}
           <div className="sm:hidden flex flex-1 justify-end items-center">
             <img
